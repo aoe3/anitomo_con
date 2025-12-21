@@ -30,9 +30,9 @@ This project is built with plain HTML, CSS, and JavaScript for maximum compatibi
 
 Vendor QR codes should point to the root URL using query parameters:
 
-````text
-/?vendor=TOKEN
 ```text
+/?vendor=TOKEN
+```
 
 Do not use /index.html or deep file paths, as routing behavior may differ across servers.
 
@@ -42,11 +42,14 @@ Do not use /index.html or deep file paths, as routing behavior may differ across
 - Duplicate scan: acknowledged with a non-intrusive message
 - Invalid vendor: user is notified, no progress change
 
-
 ## Testing
 
 Manually tested on:
+
 - Desktop browsers
 - iPhone 5s (iOS 12 Safari)
 - Pixel 3a (Android 12 Chrome)
-````
+
+```
+
+```
