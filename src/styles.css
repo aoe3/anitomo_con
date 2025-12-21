@@ -38,3 +38,17 @@ body {
   background: #4caf50;
   color: white;
 }
+
+.message {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-size: 0.85rem;
+}
+
+.message.error {
+  background: #fdecea;
+  color: #b71c1c;
+}

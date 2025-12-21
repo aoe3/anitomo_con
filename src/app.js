@@ -6,6 +6,18 @@ const vendors = [
 
 const STORAGE_KEY = "conhunt:v1:test";
 
+const messageEl = document.getElementById("message");
+
+function showMessage(text, isError = false) {
+  messageEl.textContent = text;
+  messageEl.hidden = false;
+  messageEl.className = "message" + (isError ? " error" : "");
+
+  setTimeout(() => {
+    messageEl.hidden = true;
+  }, 2000);
+}
+
 function isValidVendor(id) {
   return vendors.some(v => v.id === id);
 }
@@ -51,18 +63,22 @@ function handleScanFromURL() {
   if (!vendorId) return;
 
   if (!isValidVendor(vendorId)) {
-    alert("This booth is not part of the scavenger hunt.");
+    showMessage("This booth is not part of the scavenger hunt.", true);
     window.history.replaceState({}, "", window.location.pathname);
     return;
   }
 
   const state = loadState();
-  if (!state.scanned.includes(vendorId)) {
+  if (state.scanned.includes(vendorId)) {
+    showMessage("Already collected ✔️");
+  } else {
     state.scanned.push(vendorId);
     saveState(state);
+    showMessage("Sticker collected!");
   }
 
   window.history.replaceState({}, "", window.location.pathname);
+
 }
 
 handleScanFromURL();
