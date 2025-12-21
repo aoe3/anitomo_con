@@ -6,6 +6,10 @@ const vendors = [
 
 const STORAGE_KEY = "conhunt:v1:test";
 
+function isValidVendor(id) {
+  return vendors.some(v => v.id === id);
+}
+
 function loadState() {
   try {
     return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { scanned: [] };
@@ -46,13 +50,18 @@ function handleScanFromURL() {
 
   if (!vendorId) return;
 
+  if (!isValidVendor(vendorId)) {
+    alert("This booth is not part of the scavenger hunt.");
+    window.history.replaceState({}, "", window.location.pathname);
+    return;
+  }
+
   const state = loadState();
   if (!state.scanned.includes(vendorId)) {
     state.scanned.push(vendorId);
     saveState(state);
   }
 
-  // clean URL
   window.history.replaceState({}, "", window.location.pathname);
 }
 
