@@ -57,7 +57,7 @@ body {
   background: var(--anitomo-yellow);
   color: var(--anitomo-black);
   border-color: var(--anitomo-yellow);
-  animation: pop 0.2s ease-out;
+  animation: pop 0.7s ease-out;
 
   box-shadow:
     0 4px 10px rgba(0, 0, 0, 0.25),
@@ -67,7 +67,8 @@ body {
 }
 
 @keyframes pop {
-  0% { transform: scale(0.95); }
+  0%   { transform: scale(0.92); }
+  60%  { transform: scale(1.04); }
   100% { transform: scale(1); }
 }
 

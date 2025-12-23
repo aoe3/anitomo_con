@@ -1,5 +1,6 @@
 let vendors = [];
 let tokenToVendorId = {};
+let lastScannedVendorId = null;
 
 let STORAGE_KEY = "conhunt:uninitialized";
 
@@ -55,7 +56,7 @@ function render() {
   const count = document.getElementById("count");
 
   container.innerHTML = "";
-  count.textContent = state.scanned.length;
+  count.textContent = `${state.scanned.length} / ${vendors.length} collected`;
 
   vendors.forEach(vendor => {
     const div = document.createElement("div");
@@ -72,17 +73,26 @@ function render() {
     div.appendChild(booth);
 
     if (state.scanned.includes(vendor.id)) {
-      div.classList.add("collected");
+      if (lastScannedVendorId && vendor.id === lastScannedVendorId) {
+        requestAnimationFrame(() => {
+          div.classList.add("collected");
+        });
+      } else {
+        div.classList.add("collected");
+      }
     }
 
     container.appendChild(div);
   });
+
+  lastScannedVendorId = null;
 }
 
 function handleScanFromURL() {
   const params = new URLSearchParams(window.location.search);
 
   let vendorId = null;
+
 
   // NEW: token-based scan
   const token = params.get("v");
@@ -113,7 +123,7 @@ function handleScanFromURL() {
   } else {
     state.scanned.push(vendorId);
     saveState(state);
-    showMessage("Sticker collected!");
+    lastScannedVendorId = vendorId;
   }
 
   window.history.replaceState({}, "", window.location.pathname);
