@@ -2,18 +2,29 @@
 
 import sys
 import csv
+import random
+import string
 
 TRUE_VALUES = {"yes", "y", "true", "1"}
+TOKEN_LENGTH = 10
 
 def is_participating(value):
     if value is None:
-        return True  # default to participating if column missing
+        return True
     return value.strip().lower() in TRUE_VALUES
 
 def clean(value):
     if value is None:
         return ""
     return value.strip()
+
+def generate_token(existing_tokens):
+    characters = string.ascii_letters + string.digits  # A-Z a-z 0-9
+
+    while True:
+        token = "".join(random.choice(characters) for _ in range(TOKEN_LENGTH))
+        if token not in existing_tokens:
+            return token
 
 def main():
     if len(sys.argv) < 2:
@@ -53,11 +64,27 @@ def main():
             })
 
     print()
-    print(f"Total participating vendors: {len(participating_vendors)}")
+    print("Assigning vendor IDs and generating tokens…")
     print()
 
-    for vendor in participating_vendors:
-        print(vendor)
+    used_tokens = set()
+
+    for index, vendor in enumerate(participating_vendors, start=1):
+        token = generate_token(used_tokens)
+        used_tokens.add(token)
+
+        vendor["vendor_id"] = index
+        vendor["token"] = token
+
+        print(
+            f"{vendor['vendor_id']:>2} | "
+            f"{vendor['vendor_name']:<20} | "
+            f"{vendor['booth']:<5} | "
+            f"{vendor['token']}"
+        )
+
+    print()
+    print(f"Total participating vendors: {len(participating_vendors)}")
 
 if __name__ == "__main__":
     main()
