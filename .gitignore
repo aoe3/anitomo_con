@@ -1,3 +1,6 @@
+# Python virtual environment
+.venv/
+
 # Admin-generated private artifacts
 admin/vendors.private.csv
 admin/qrs/
