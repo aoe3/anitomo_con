@@ -56,7 +56,7 @@ function render() {
   const count = document.getElementById("count");
 
   container.innerHTML = "";
-  count.textContent = `${state.scanned.length} / ${vendors.length} collected`;
+  count.textContent = `${state.scanned.length} / ${vendors.length}`;
 
   vendors.forEach(vendor => {
     const div = document.createElement("div");
