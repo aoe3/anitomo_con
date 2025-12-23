@@ -1,0 +1,6 @@
+# Admin-generated private artifacts
+admin/vendors.private.csv
+admin/qrs/
+
+# Generated public data (recreated by generator)
+src/vendors.public.json
