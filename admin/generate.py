@@ -4,6 +4,9 @@ import sys
 import csv
 import random
 import string
+import json
+import os
+
 
 TRUE_VALUES = {"yes", "y", "true", "1"}
 TOKEN_LENGTH = 10
@@ -82,6 +85,53 @@ def main():
             f"{vendor['booth']:<5} | "
             f"{vendor['token']}"
         )
+    
+    public_output = {
+        "eventId": "anitomo-con-2026",
+        "vendors": [
+            {
+                "id": v["vendor_id"],
+                "name": v["vendor_name"],
+                "booth": v["booth"],
+                "token": v["token"],
+            }
+            for v in participating_vendors
+        ],
+    }
+
+    os.makedirs("src", exist_ok=True)
+    with open("src/vendors.public.json", "w", encoding="utf-8") as f:
+        json.dump(public_output, f, indent=2)
+
+    print("✅ Wrote src/vendors.public.json")
+
+        # Write private CSV
+    private_csv_path = "admin/vendors.private.csv"
+
+    with open(private_csv_path, "w", newline="", encoding="utf-8") as csvfile:
+        fieldnames = [
+            "vendor_id",
+            "vendor_name",
+            "booth",
+            "contact_email",
+            "token",
+            "notes",
+        ]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        writer.writeheader()
+        for v in participating_vendors:
+            writer.writerow({
+                "vendor_id": v["vendor_id"],
+                "vendor_name": v["vendor_name"],
+                "booth": v["booth"],
+                "contact_email": v["contact_email"],
+                "token": v["token"],
+                "notes": v["notes"],
+            })
+
+    print("🔒 Wrote admin/vendors.private.csv")
+
 
     print()
     print(f"Total participating vendors: {len(participating_vendors)}")
