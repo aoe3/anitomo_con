@@ -1,12 +1,27 @@
-const vendors = [
-  { id: 1, name: "Vendor A" },
-  { id: 2, name: "Vendor B" },
-  { id: 3, name: "Vendor C" },
-];
+let vendors = [];
+let tokenToVendorId = {};
 
-const STORAGE_KEY = "conhunt:v1:test";
+let STORAGE_KEY = "conhunt:uninitialized";
 
 const messageEl = document.getElementById("message");
+
+fetch("vendors.public.json")
+  .then(res => res.json())
+  .then(data => {
+    vendors = data.vendors;
+
+    STORAGE_KEY = `conhunt:${data.eventId}`;
+
+    vendors.forEach(v => {
+      tokenToVendorId[v.token] = v.id;
+    });
+
+    handleScanFromURL();
+    render();
+  })
+  .catch(err => {
+    console.error("Failed to load vendors.public.json", err);
+  });
 
 function showMessage(text, isError = false) {
   messageEl.textContent = text;
@@ -55,10 +70,24 @@ function render() {
   });
 }
 
-// TEMP: simulate scanning vendor 1 via URL ?vendor=1
 function handleScanFromURL() {
   const params = new URLSearchParams(window.location.search);
-  const vendorId = Number(params.get("vendor"));
+
+  let vendorId = null;
+
+  // NEW: token-based scan
+  const token = params.get("v");
+  if (token && tokenToVendorId[token]) {
+    vendorId = tokenToVendorId[token];
+  }
+
+  // EXISTING: numeric scan (kept for testing/admin)
+  if (!vendorId) {
+    const legacyId = Number(params.get("vendor"));
+    if (legacyId) {
+      vendorId = legacyId;
+    }
+  }
 
   if (!vendorId) return;
 
@@ -69,6 +98,7 @@ function handleScanFromURL() {
   }
 
   const state = loadState();
+
   if (state.scanned.includes(vendorId)) {
     showMessage("Already collected ✔️");
   } else {
@@ -78,8 +108,4 @@ function handleScanFromURL() {
   }
 
   window.history.replaceState({}, "", window.location.pathname);
-
 }
-
-handleScanFromURL();
-render();

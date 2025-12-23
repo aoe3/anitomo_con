@@ -5,11 +5,15 @@ import csv
 import random
 import string
 import json
+import qrcode
 import os
+
 
 
 TRUE_VALUES = {"yes", "y", "true", "1"}
 TOKEN_LENGTH = 10
+BASE_URL = "http://192.168.1.151:3000/"
+EVENT_ID = "anitomo-con-2026-devtest-v2"
 
 def is_participating(value):
     if value is None:
@@ -28,6 +32,11 @@ def generate_token(existing_tokens):
         token = "".join(random.choice(characters) for _ in range(TOKEN_LENGTH))
         if token not in existing_tokens:
             return token
+
+def generate_qr_code(url, output_path):
+    img = qrcode.make(url)
+    img.save(output_path)
+
 
 def main():
     if len(sys.argv) < 2:
@@ -87,7 +96,7 @@ def main():
         )
     
     public_output = {
-        "eventId": "anitomo-con-2026",
+        "eventId": EVENT_ID,
         "vendors": [
             {
                 "id": v["vendor_id"],
@@ -132,6 +141,19 @@ def main():
 
     print("🔒 Wrote admin/vendors.private.csv")
 
+    print()
+    print("Generating QR codes…")
+
+    qr_dir = "admin/qrs"
+    os.makedirs(qr_dir, exist_ok=True)
+
+    for v in participating_vendors:
+        qr_url = f"{BASE_URL}?v={v['token']}"
+        qr_path = os.path.join(qr_dir, f"vendor-{v['vendor_id']:03}.png")
+
+        generate_qr_code(qr_url, qr_path)
+
+        print(f"📷 QR for {v['vendor_name']} → {qr_path}")
 
     print()
     print(f"Total participating vendors: {len(participating_vendors)}")
