@@ -60,7 +60,16 @@ function render() {
   vendors.forEach(vendor => {
     const div = document.createElement("div");
     div.className = "vendor";
-    div.textContent = vendor.name;
+    const name = document.createElement("div");
+    name.className = "vendor-name";
+    name.textContent = vendor.name;
+
+    const booth = document.createElement("div");
+    booth.className = "vendor-booth";
+    booth.textContent = `Booth ${vendor.booth}`;
+
+    div.appendChild(name);
+    div.appendChild(booth);
 
     if (state.scanned.includes(vendor.id)) {
       div.classList.add("collected");
