@@ -13,7 +13,7 @@ import os
 TRUE_VALUES = {"yes", "y", "true", "1"}
 TOKEN_LENGTH = 10
 BASE_URL = "http://192.168.1.151:3000/"
-EVENT_ID = "anitomo-con-2026-devtest-v12"
+EVENT_ID = "anitomo-con-2026-devtest-v18"
 
 def is_participating(value):
     if value is None:
@@ -85,7 +85,7 @@ def main():
         token = generate_token(used_tokens)
         used_tokens.add(token)
 
-        vendor["vendor_id"] = index
+        vendor["vendor_id"] = int(index)
         vendor["token"] = token
 
         print(
@@ -131,7 +131,7 @@ def main():
         writer.writeheader()
         for v in participating_vendors:
             writer.writerow({
-                "vendor_id": v["vendor_id"],
+                "vendor_id": int(v["vendor_id"]),
                 "vendor_name": v["vendor_name"],
                 "booth": v["booth"],
                 "contact_email": v["contact_email"],
@@ -149,7 +149,10 @@ def main():
 
     for v in participating_vendors:
         qr_url = f"{BASE_URL}?v={v['token']}"
-        qr_path = os.path.join(qr_dir, f"vendor-{v['vendor_id']:03}.png")
+        qr_path = os.path.join(
+            qr_dir,
+            f"anitomo_qr_vendor_{v['vendor_id']:03}.png"
+        )
 
         generate_qr_code(qr_url, qr_path)
 
