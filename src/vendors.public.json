@@ -1,0 +1,59 @@
+{
+  "eventId": "anitomo-con-2026-devtest-v21",
+  "vendors": [
+    {
+      "id": 1,
+      "name": "Florals",
+      "booth": "A-01",
+      "token": "rLQJbRTWX3"
+    },
+    {
+      "id": 2,
+      "name": "Florals",
+      "booth": "A-02",
+      "token": "eO85kyGgGw"
+    },
+    {
+      "id": 3,
+      "name": "MechaForge",
+      "booth": "B-04",
+      "token": "5IMVTLDM7E"
+    },
+    {
+      "id": 4,
+      "name": "Starlight Pins",
+      "booth": "B-05",
+      "token": "btxCjeJ6Da"
+    },
+    {
+      "id": 5,
+      "name": "Inkbound Studio",
+      "booth": "C-02",
+      "token": "cTY2ZpjksV"
+    },
+    {
+      "id": 6,
+      "name": "Lucky Cat Charms",
+      "booth": "D-03",
+      "token": "cAvVqKKobt"
+    },
+    {
+      "id": 7,
+      "name": "Arcane Dice",
+      "booth": "D-04",
+      "token": "a55QSwYms9"
+    },
+    {
+      "id": 8,
+      "name": "Neon Lotus",
+      "booth": "E-01",
+      "token": "xdluze8m47"
+    },
+    {
+      "id": 9,
+      "name": "Cloud Shrine",
+      "booth": "E-02",
+      "token": "ntvne0SYZJ"
+    }
+  ]
+}
