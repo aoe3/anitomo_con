@@ -12,8 +12,10 @@ import csv
 import os
 import sys
 from datetime import datetime
+import smtplib
+from email.message import EmailMessage
 
-VENDORS_CSV = "admin/vendors.private.csv"
+VENDORS_CSV = "testingdata/vendors.smtp_test.csv"
 QR_DIR = "admin/qrs"
 SENT_LOG = "admin/sent_log.csv"
 
@@ -52,8 +54,29 @@ def load_sent_log(path):
     with open(path, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            sent.add(row["vendor_id"])
+            sent.add(int(row["vendor_id"]))
     return sent
+
+def send_email(to_email, subject, body, attachment_path):
+    msg = EmailMessage()
+    msg["Subject"] = subject
+    msg["From"] = os.environ["SMTP_FROM"]
+    msg["To"] = to_email
+
+    msg.set_content(body)
+
+    # Attach QR
+    with open(attachment_path, "rb") as f:
+        file_data = f.read()
+        file_name = os.path.basename(attachment_path)
+
+    msg.add_attachment(file_data, maintype="image", subtype="png", filename=file_name)
+
+    # Send via SMTP
+    with smtplib.SMTP(os.environ["SMTP_HOST"], int(os.environ["SMTP_PORT"])) as server:
+        server.starttls()
+        server.login(os.environ["SMTP_USER"], os.environ["SMTP_PASSWORD"])
+        server.send_message(msg)
 
 
 def main():
@@ -80,7 +103,6 @@ def main():
     for i, vendor in enumerate(vendors, start=1):
         vendor_id = int(vendor["vendor_id"])
         email = vendor["contact_email"]
-        qr_filename = f"anitomo_qr_vendor_{vendor_id}.png"
         qr_path = os.path.join(QR_DIR, f"anitomo_qr_vendor_{vendor_id:03}.png")
 
 
@@ -92,9 +114,30 @@ def main():
             print(f"[{i}] ❌ Missing QR → {qr_path}")
             continue
 
+        # if args.send:
+        #     print(f"[{i}] SEND → {email}")
+        #     # Email sending will go here later
+
         if args.send:
             print(f"[{i}] SEND → {email}")
-            # Email sending will go here later
+
+            subject = "Your AniTomo Con QR Code"
+            body = f"""
+        Hi {vendor['vendor_name']},
+
+        Here is your QR code for AniTomo Con.
+
+        Please display it at your booth for attendees to scan.
+
+        Thanks!
+        """
+
+            try:
+                send_email(email, subject, body, qr_path)
+                print(f"    ✅ Sent successfully")
+            except Exception as e:
+                print(f"    ❌ Failed to send: {e}")
+
         else:
             print(f"[{i}] WOULD SEND → {email}")
 

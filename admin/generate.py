@@ -12,8 +12,8 @@ import os
 
 TRUE_VALUES = {"yes", "y", "true", "1"}
 TOKEN_LENGTH = 10
-BASE_URL = "http://192.168.1.151:3000/"
-EVENT_ID = "anitomo-con-2026-devtest-v18"
+BASE_URL = "https://anitomo-con-qr-hunt.netlify.app/"
+EVENT_ID = "anitomo-con-2026-devtest-v21"
 
 def is_participating(value):
     if value is None:

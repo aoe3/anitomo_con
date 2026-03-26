@@ -1,9 +1,18 @@
 # Python virtual environment
 .venv/
+__pycache__/
+
+# Node (if you ever use it later)
+node_modules/
+
+# OS junk
+.DS_Store
 
 # Admin-generated private artifacts
 admin/vendors.private.csv
 admin/qrs/
 
 # Generated public data (recreated by generator)
-src/vendors.public.json
+
+# E-mail test resources
+testingdata/vendors.smtp_test.csv
