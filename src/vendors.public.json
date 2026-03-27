@@ -1,77 +1,77 @@
 {
-  "eventId": "anitomo-con-20260327-103735",
+  "eventId": "anitomo-con-20260327-103912",
   "vendors": [
     {
       "id": 1,
       "name": "Florals",
       "booth": "A-01",
-      "token": "QTbdgEZxSZ"
+      "token": "N3CXsj2kC2"
     },
     {
       "id": 2,
       "name": "Florals",
       "booth": "A-02",
-      "token": "oWlASh4wKY"
+      "token": "PMfoGl87qO"
     },
     {
       "id": 3,
       "name": "MechaForge",
       "booth": "B-04",
-      "token": "XFuZJgqvfD"
+      "token": "GHDfmTJdZy"
     },
     {
       "id": 4,
       "name": "Starlight Pins",
       "booth": "B-05",
-      "token": "eTzWz9h92s"
+      "token": "jDkWyaqAAy"
     },
     {
       "id": 5,
       "name": "Inkbound Studio",
       "booth": "C-02",
-      "token": "ceEJzZZG5v"
+      "token": "1VjGjiYnE8"
     },
     {
       "id": 6,
       "name": "Lucky Cat Charms",
       "booth": "D-03",
-      "token": "gn79xt3Xld"
+      "token": "2hf0jEhgfl"
     },
     {
       "id": 7,
       "name": "Arcane Dice",
       "booth": "D-04",
-      "token": "4r45YkQH9j"
+      "token": "jC8dgAltcb"
     },
     {
       "id": 8,
       "name": "Neon Lotus",
       "booth": "E-01",
-      "token": "BDQEStS9RN"
+      "token": "TgOtPefYTq"
     },
     {
       "id": 9,
       "name": "Otaku Outfitters",
       "booth": "D-02",
-      "token": "gjdRN4WwlR"
+      "token": "XUmlaHzQy6"
     },
     {
       "id": 10,
       "name": "Sakura Stationery",
       "booth": "E-03",
-      "token": "mnDlwyxO8c"
+      "token": "BCbxC4TQxA"
     },
     {
       "id": 11,
       "name": "Retro Relics",
       "booth": "E-04",
-      "token": "3H57X0YKAV"
+      "token": "5ygJH9c1gC"
     },
     {
       "id": 12,
       "name": "Mythic Minis",
       "booth": "E-05",
-      "token": "UUFZ0sMEcB"
+      "token": "O7eKKd4Pee"
     }
   ]
 }
