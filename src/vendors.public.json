@@ -1,143 +1,77 @@
 {
-  "eventId": "anitomo-con-20260327-103207",
+  "eventId": "anitomo-con-20260327-103735",
   "vendors": [
     {
       "id": 1,
       "name": "Florals",
       "booth": "A-01",
-      "token": "gTQ6xnFwZp"
+      "token": "QTbdgEZxSZ"
     },
     {
       "id": 2,
       "name": "Florals",
       "booth": "A-02",
-      "token": "hd276a5dN0"
+      "token": "oWlASh4wKY"
     },
     {
       "id": 3,
       "name": "MechaForge",
       "booth": "B-04",
-      "token": "Ua9kUTrcGZ"
+      "token": "XFuZJgqvfD"
     },
     {
       "id": 4,
       "name": "Starlight Pins",
       "booth": "B-05",
-      "token": "mVJiCPtWrV"
+      "token": "eTzWz9h92s"
     },
     {
       "id": 5,
       "name": "Inkbound Studio",
       "booth": "C-02",
-      "token": "LZ4J5f55zP"
+      "token": "ceEJzZZG5v"
     },
     {
       "id": 6,
       "name": "Lucky Cat Charms",
       "booth": "D-03",
-      "token": "XblQUJjzrR"
+      "token": "gn79xt3Xld"
     },
     {
       "id": 7,
       "name": "Arcane Dice",
       "booth": "D-04",
-      "token": "UzQYR7Pkax"
+      "token": "4r45YkQH9j"
     },
     {
       "id": 8,
       "name": "Neon Lotus",
       "booth": "E-01",
-      "token": "GU8mYcXYP7"
+      "token": "BDQEStS9RN"
     },
     {
       "id": 9,
-      "name": "Cloud Shrine",
-      "booth": "E-02",
-      "token": "6QRk4ELOaV"
+      "name": "Otaku Outfitters",
+      "booth": "D-02",
+      "token": "gjdRN4WwlR"
     },
     {
       "id": 10,
-      "name": "Paper Crane Co.",
-      "booth": "A-03",
-      "token": "iU5EfdtRtd"
+      "name": "Sakura Stationery",
+      "booth": "E-03",
+      "token": "mnDlwyxO8c"
     },
     {
       "id": 11,
-      "name": "Pixel Potion",
-      "booth": "A-04",
-      "token": "13zrTjZFSw"
+      "name": "Retro Relics",
+      "booth": "E-04",
+      "token": "3H57X0YKAV"
     },
     {
       "id": 12,
-      "name": "Dragon Brew Tea",
-      "booth": "A-05",
-      "token": "muP4nSgjoc"
-    },
-    {
-      "id": 13,
-      "name": "Kitsune Crafts",
-      "booth": "B-01",
-      "token": "I6mdysIWFj"
-    },
-    {
-      "id": 14,
-      "name": "Midnight Atelier",
-      "booth": "B-02",
-      "token": "qOU85aeK3R"
-    },
-    {
-      "id": 15,
-      "name": "Crystal Circuit",
-      "booth": "B-03",
-      "token": "3dZ5oUxEJ0"
-    },
-    {
-      "id": 16,
-      "name": "Sunset Threads",
-      "booth": "C-03",
-      "token": "Oaii9sRdFv"
-    },
-    {
-      "id": 17,
-      "name": "Moonlight Enamel",
-      "booth": "C-04",
-      "token": "ZGG07GjjSo"
-    },
-    {
-      "id": 18,
-      "name": "Tiny Totems",
-      "booth": "C-05",
-      "token": "UuGiThPSP7"
-    },
-    {
-      "id": 19,
-      "name": "Fable Forge",
-      "booth": "D-01",
-      "token": "1GSN7tvYBf"
-    },
-    {
-      "id": 20,
-      "name": "Otaku Outfitters",
-      "booth": "D-02",
-      "token": "StqbJ328la"
-    },
-    {
-      "id": 21,
-      "name": "Sakura Stationery",
-      "booth": "E-03",
-      "token": "1cWlnm19c4"
-    },
-    {
-      "id": 22,
-      "name": "Retro Relics",
-      "booth": "E-04",
-      "token": "hGcxVPiJIb"
-    },
-    {
-      "id": 23,
       "name": "Mythic Minis",
       "booth": "E-05",
-      "token": "MCXueX3Hgz"
+      "token": "UUFZ0sMEcB"
     }
   ]
 }
