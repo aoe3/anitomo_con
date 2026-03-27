@@ -13,7 +13,10 @@ from datetime import datetime
 
 TRUE_VALUES = {"yes", "y", "true", "1"}
 TOKEN_LENGTH = 10
-BASE_URL = "https://anitomo-con-qr-hunt.netlify.app/"
+# BASE_URL rules 
+# for prod, use https://anitomo-con-qr-hunt.netlify.app/
+# for testing, use http://192.168.1.44:3000/
+BASE_URL = "https://anitomo-con-qr-hunt.netlify.app/" 
 
 def generate_event_id():
     return "anitomo-con-" + datetime.now().strftime("%Y%m%d-%H%M%S")

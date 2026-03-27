@@ -15,7 +15,7 @@ from datetime import datetime
 import smtplib
 from email.message import EmailMessage
 
-VENDORS_CSV = "testingdata/vendors.smtp_test.csv"
+VENDORS_CSV = "admin/vendors.private.csv"
 QR_DIR = "admin/qrs"
 SENT_LOG = "admin/sent_log.csv"
 
@@ -102,7 +102,8 @@ def main():
 
     for i, vendor in enumerate(vendors, start=1):
         vendor_id = int(vendor["vendor_id"])
-        email = vendor["contact_email"]
+        test_recipient = os.environ.get("SMTP_TEST_RECIPIENT")
+        email = test_recipient if test_recipient else vendor["contact_email"]
         qr_path = os.path.join(QR_DIR, f"anitomo_qr_vendor_{vendor_id:03}.png")
 
 
@@ -119,9 +120,9 @@ def main():
         #     # Email sending will go here later
 
         if args.send:
-            print(f"[{i}] SEND → {email}")
+            print(f"[{i}] SEND → {vendor['vendor_name']} ({vendor['booth']}) → {email}")
 
-            subject = "Your AniTomo Con QR Code"
+            subject = f"[TEST] AniTomo QR – {vendor['vendor_name']} ({vendor['booth']})"
             body = f"""
         Hi {vendor['vendor_name']},
 

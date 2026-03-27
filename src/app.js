@@ -50,11 +50,12 @@ fetch("vendors.public.json")
 
 function showMessage(text, isError = false) {
   messageEl.textContent = text;
-  messageEl.hidden = false;
-  messageEl.className = "message" + (isError ? " error" : "");
+  messageEl.className = "message visible" + (isError ? " error" : "");
+  messageEl.style.opacity = "1";
 
   setTimeout(() => {
-    messageEl.hidden = true;
+    messageEl.style.opacity = "0";
+    messageEl.className = "message" + (isError ? " error" : "");
   }, 2000);
 }
 
@@ -187,16 +188,16 @@ function handleScanFromURL() {
 
   const state = loadState();
 
+  const vendor = vendors.find(v => v.id === vendorId);
+
   if (state.scanned.includes(vendorId)) {
-    showMessage("Already collected ✔️");
+    showMessage(`${vendor.name} already collected ✔️`);
   } else {
     state.scanned.push(vendorId);
     saveState(state);
     lastScannedVendorId = vendorId;
 
-    // auto-open collected when a new sticker is added
-    collectedToggle.setAttribute("aria-expanded", "true");
-    collectedContainer.hidden = false;
+    showMessage(`${vendor.name} collected! 🎉`);
   }
 
   window.history.replaceState({}, "", window.location.pathname);
