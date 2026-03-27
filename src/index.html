@@ -14,18 +14,44 @@
     />
     <main class="app">
       <h1>Con Scavenger Hunt</h1>
-      <p class="subtitle">
+      <p id="subtitle" class="subtitle">
         Scan vendor QR codes to collect stickers.
       </p>
 
       <section id="progress">
-        <strong>Stickers collected:</strong>
+        <strong id="progress-label">Stickers collected:</strong>
         <div id="message" class="message" hidden></div>
         <span id="count"></span>
       </section>
 
-      <section id="vendors">
-        <!-- Vendors will go here -->
+      <div id="completion-banner" class="completion-banner" hidden>
+        🎉 Collection complete!
+      </div>
+
+      <div class="progress-bar" aria-hidden="true">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+
+      <section class="vendor-section">
+        <button id="remaining-toggle" class="section-toggle" type="button" aria-expanded="true">
+          Remaining
+          <span class="section-right">
+            <span id="remaining-count"></span>
+            <span class="chevron">▼</span>
+          </span>
+        </button>
+        <section id="remaining-vendors" class="vendors-grid"></section>
+      </section>
+
+      <section class="vendor-section">
+        <button id="collected-toggle" class="section-toggle" type="button" aria-expanded="false">
+          Collected
+          <span class="section-right">
+            <span id="collected-count"></span>
+            <span class="chevron">▼</span>
+            </span>
+        </button>
+        <section id="collected-vendors" class="vendors-grid" hidden></section>
       </section>
     </main>
 

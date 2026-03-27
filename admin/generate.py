@@ -7,13 +7,16 @@ import string
 import json
 import qrcode
 import os
+from datetime import datetime
 
 
 
 TRUE_VALUES = {"yes", "y", "true", "1"}
 TOKEN_LENGTH = 10
-BASE_URL = "https://anitomo-con-qr-hunt.netlify.app/"
-EVENT_ID = "anitomo-con-2026-devtest-v21"
+BASE_URL = "http://192.168.1.44:3000/"
+
+def generate_event_id():
+    return "anitomo-con-" + datetime.now().strftime("%Y%m%d-%H%M%S")
 
 def is_participating(value):
     if value is None:
@@ -40,10 +43,11 @@ def generate_qr_code(url, output_path):
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python3 admin/generate.py <input_csv>")
+        print("Usage: python3 admin/generate.py <input_csv> [event_id]")
         sys.exit(1)
 
     input_csv = sys.argv[1]
+    event_id = sys.argv[2] if len(sys.argv) > 2 else generate_event_id()
 
     print("Vendor generator starting…")
     print("Input CSV:", input_csv)
@@ -95,8 +99,10 @@ def main():
             f"{vendor['token']}"
         )
     
+    print(f"🆔 Event ID: {event_id}")
+
     public_output = {
-        "eventId": EVENT_ID,
+        "eventId": event_id,
         "vendors": [
             {
                 "id": v["vendor_id"],
