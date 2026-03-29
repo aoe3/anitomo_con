@@ -35,6 +35,10 @@ body {
   color: #555;
 }
 
+h1, .subtitle {
+  text-align: center;
+}
+
 .vendor-section {
   margin-top: 1rem;
 }
@@ -183,7 +187,7 @@ body {
   max-width: 200px;
   width: 60%;
   height: auto;
-  margin: 16px auto;
+  margin: 16px auto 8px;
   display: block;
 }
 
@@ -227,4 +231,70 @@ body {
   margin-top: 0.2rem;
   font-size: 0.85rem;
   opacity: 0.8;
+}
+
+.map-link-row {
+  margin: 0.15rem 0 0.2rem;
+  text-align: center;
+}
+
+.map-link-button,
+.map-back-link {
+  display: inline-block;
+  padding: 0.7rem 1rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+}
+
+.map-link-button:hover,
+.map-back-link:hover {
+  opacity: 0.9;
+}
+
+.map-page {
+  max-width: 960px;
+}
+
+.map-back-link {
+  text-align: center;
+}
+
+.map-card {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.floor-map-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+}
+
+.map-hint {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  text-align: center;
+}
+
+.map-back-row {
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+.map-tip {
+  margin-top: 0.6rem;
+}
+
+.map-tip strong {
+  color: #222;
+  font-weight: 600;
 }
