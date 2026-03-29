@@ -17,7 +17,7 @@ TOKEN_LENGTH = 10
 # for prod, use https://anitomo-con-qr-hunt.netlify.app/
 # for ui testing, use http://192.168.1.44:3000/
 # for load testing, use https://anitomo-con-qr-load-test.netlify.app/
-BASE_URL = "http://192.168.1.50:3000/" 
+BASE_URL = "https://anitomo-con-qr-load-test.netlify.app/" 
 
 def generate_event_id():
     return "anitomo-con-" + datetime.now().strftime("%Y%m%d-%H%M%S")
