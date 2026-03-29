@@ -4,10 +4,16 @@ let lastScannedVendorId = null;
 
 let STORAGE_KEY = "conhunt:uninitialized";
 
+const SUPABASE_URL = "https://ujfvsnftyrbvyrdycami.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_tHRDPdmxJOnZyMCnrLHNLQ_QKCgfegp";
+
 const subtitleEl = document.getElementById("subtitle");
 const progressLabelEl = document.getElementById("progress-label");
 const messageEl = document.getElementById("message");
 const bannerEl = document.getElementById("completion-banner");
+const progressBarWrapperEl = document.getElementById("progress-bar-wrapper");
+const progressSectionEl = document.getElementById("progress");
+const huntOverBannerEl = document.getElementById("hunt-over-banner");
 
 const remainingContainer = document.getElementById("remaining-vendors");
 const collectedContainer = document.getElementById("collected-vendors");
@@ -17,6 +23,8 @@ const collectedCountEl = document.getElementById("collected-count");
 
 const remainingToggle = document.getElementById("remaining-toggle");
 const collectedToggle = document.getElementById("collected-toggle");
+
+let huntFinishedCache = null;
 
 remainingToggle.addEventListener("click", () => {
   const isExpanded = remainingToggle.getAttribute("aria-expanded") === "true";
@@ -32,7 +40,7 @@ collectedToggle.addEventListener("click", () => {
 
 fetch("vendors.public.json")
   .then((res) => res.json())
-  .then((data) => {
+  .then(async (data) => {
     vendors = data.vendors;
     STORAGE_KEY = `conhunt:${data.eventId}`;
 
@@ -40,7 +48,7 @@ fetch("vendors.public.json")
       tokenToVendorId[v.token] = v.id;
     });
 
-    handleScanFromURL();
+    await handleScanFromURL();
     render();
   })
   .catch((err) => {
@@ -90,6 +98,24 @@ function getTruncatedTimestampISO() {
   const now = new Date();
   now.setSeconds(0, 0);
   return now.toISOString();
+}
+
+async function checkHuntStatusOnce() {
+  if (huntFinishedCache !== null) return huntFinishedCache;
+
+  const res = await fetch(
+    `${SUPABASE_URL}/rest/v1/anitomo_scavenger_hunt_status?id=eq.1&select=is_finished`,
+    {
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+      },
+    }
+  );
+
+  const data = await res.json();
+  huntFinishedCache = data?.[0]?.is_finished === true;
+  return huntFinishedCache;
 }
 
 function formatCollectedTime(isoString) {
@@ -192,6 +218,7 @@ function renderCompletionBanner(state) {
 function render() {
   const state = loadState();
   const scannedSet = new Set(state.scanned);
+  const huntIsOver = huntFinishedCache === true;
 
   remainingContainer.innerHTML = "";
   collectedContainer.innerHTML = "";
@@ -242,6 +269,32 @@ function render() {
   const progressFill = document.getElementById("progress-fill");
   progressFill.style.width = `${percent}%`;
 
+  if (huntIsOver) {
+    huntOverBannerEl.hidden = false;
+
+    subtitleEl.hidden = true;
+    bannerEl.hidden = true;
+
+    progressSectionEl.hidden = true;
+    progressBarWrapperEl.hidden = true;
+
+    remainingToggle.hidden = true;
+    remainingContainer.hidden = true;
+
+    collectedToggle.hidden = true;
+    collectedContainer.hidden = true;
+
+    return;
+  }
+
+  huntOverBannerEl.hidden = true;
+
+  progressSectionEl.hidden = false;
+  progressBarWrapperEl.hidden = false;
+
+  remainingToggle.hidden = false;
+  collectedToggle.hidden = false;
+
   if (collectedCount === total && total > 0) {
     subtitleEl.hidden = true;
     countEl.hidden = true;
@@ -266,7 +319,14 @@ function render() {
   }
 }
 
-function handleScanFromURL() {
+async function handleScanFromURL() {
+  const finished = await checkHuntStatusOnce();
+
+  if (finished) {
+    window.history.replaceState({}, "", window.location.pathname);
+    return;
+  }
+
   const params = new URLSearchParams(window.location.search);
 
   let vendorId = null;

@@ -11,6 +11,7 @@ node_modules/
 # Admin-generated private artifacts
 admin/vendors.private.csv
 admin/qrs/
+admin/toggle_scavenger_hunt.mjs
 
 # Generated public data (recreated by generator)
 

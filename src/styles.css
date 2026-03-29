@@ -298,3 +298,14 @@ h1, .subtitle {
   color: #222;
   font-weight: 600;
 }
+
+.hunt-over-banner {
+  margin: 0.75rem 0 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: #111;
+  color: #fff;
+  font-weight: 800;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
