@@ -16,3 +16,6 @@ admin/qrs/
 
 # E-mail test resources
 testingdata/vendors.smtp_test.csv
+
+# Load-testing resources (k6, stress tests, etc.)
+loadtest/

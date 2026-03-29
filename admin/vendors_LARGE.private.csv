@@ -1,0 +1,118 @@
+vendor_id,vendor_name,booth,contact_email,token,notes
+1,Florals,A-01,florals.soap@example.com,6rvFuZCwUZ,Handmade soaps
+2,Florals,A-02,florals.crochet@example.com,eL4aguHCan,Crochet flowers
+3,MechaForge,B-04,mechaforge@example.com,spofoElR4S,Large display
+4,Starlight Pins,B-05,starlightpins@example.com,vDsyBvmV9c,
+5,Inkbound Studio,C-02,inkbound@example.com,TFPLS4HE8r,
+6,Lucky Cat Charms,D-03,luckycat@example.com,lGVHt0xv2l,
+7,Arcane Dice,D-04,arcanedice@example.com,ByAGW8zcjo,
+8,Neon Lotus,E-01,neonlotus@example.com,r50ygFH4MT,
+9,Cloud Shrine,E-02,cloudshrine@example.com,4vv025WBla,Corner booth
+10,Paper Crane Co.,A-03,papercrane@example.com,ubiyE7L9jJ,Origami art
+11,Pixel Potion,A-04,pixelpotion@example.com,SyRGI1itMC,
+12,Dragon Brew Tea,A-05,dragonbrew@example.com,sRmAUCbPNL,Free samples
+13,Kitsune Crafts,B-01,kitsune@example.com,rO11fGkYdT,
+14,Midnight Atelier,B-02,midnightatelier@example.com,zNkDyUVlfe,Dark themed prints
+15,Crystal Circuit,B-03,crystalcircuit@example.com,eEtDeHsC75,
+16,Sunset Threads,C-03,sunsetthreads@example.com,K8LExEIQSP,
+17,Moonlight Enamel,C-04,moonlight@example.com,gLer91zq4Y,
+18,Tiny Totems,C-05,totems@example.com,1Dlssh1UUq,
+19,Fable Forge,D-01,fableforge@example.com,BdlQwmZkvM,
+20,Otaku Outfitters,D-02,otakuoutfitters@example.com,Z0fk1eYzti,
+21,Sakura Stationery,E-03,sakura@example.com,2ulPCXgF04,
+22,Retro Relics,E-04,retrorelics@example.com,3rka8uSiyT,
+23,Mythic Minis,E-05,mythicminis@example.com,cu5cpaBXwP,
+24,Nebula Knits,F-02,nebulaknits@example.com,WsMlQnXHc8,Hand-knit scarves
+25,Steel Sakura,F-03,steelsakura@example.com,zE6lZegjfk,Metal art
+26,Potion Pantry,F-04,potionpantry@example.com,JaDpjuGd8u,Fantasy-themed snacks
+27,Dice & Dungeons,F-05,diceanddungeons@example.com,TrrSlQu4Lf,TTRPG accessories
+28,Velvet Fox Studio,G-01,velvetfox@example.com,M3tRKOCxwX,Character prints
+29,Hikari Prints,G-02,hikari@example.com,kBi3KRSu8M,Anime posters
+30,Tiny Galaxy Crafts,G-03,galaxycrafts@example.com,peOVZyiLDJ,Mini dioramas
+31,Runic Threads,G-04,runicthreads@example.com,knH342csMl,Embroidered patches
+32,Cherry Blossom Trinkets,G-05,cherrytrinkets@example.com,JzFffAbYEk,
+33,Griffin Gear,H-01,griffingear@example.com,KgNjmrcjmS,Leather goods
+34,Dreamwave Stickers,H-02,dreamwave@example.com,DkCTwg1CZa,
+35,Pixel Forge Studio,H-03,pixelforge@example.com,kQLjhEPkKp,Game-inspired art
+36,Otterly Cute Crafts,H-04,ottercrafts@example.com,tmDVgOkEUY,
+37,Arcadia Apparel,H-05,arcadia@example.com,5hYIXpJ4gh,Streetwear anime fusion
+38,Mystic Bookmark Co.,I-01,mysticbookmark@example.com,BaXtGIUCTs,
+39,Plush Planet,I-02,plushplanet@example.com,sagm7ysgoH,Handmade plushies
+40,Enchanted Resin,I-03,enchantedresin@example.com,PZ0eLU42Iv,
+41,Crimson Koi Studio,I-04,crimsonkoi@example.com,lfdXAdeDTT,
+42,Solar Flare Art,I-05,solarflare@example.com,DpEswg5ZnG,
+43,Fandom Frames,J-01,fandomframes@example.com,AZYZTWiVVT,Framed prints
+44,Whispering Pines Crafts,J-02,whisperpines@example.com,4FHbgnGoDa,
+45,Magic Ink Collective,J-03,magicink@example.com,HybNwnLpgG,Tattoo-style prints
+46,Dragonfly Designs,J-04,dragonfly@example.com,bLzRFR07QN,
+47,Kawaii Corner,J-05,kawaiicorner@example.com,Sb90hk7KT0,
+48,Retro Pixel Lab,K-01,retropixel@example.com,6JfunZedWU,
+49,Cosmic Clay Studio,K-02,cosmicclay@example.com,HpN9Qxdkd9,
+50,Moonbeam Jewelry,K-03,moonbeam@example.com,tAiuA4QFdD,
+51,Fable Stitch,K-04,fablestitch@example.com,avyDtKUBFO,
+52,Knight’s Trinkets,K-05,knightstrinkets@example.com,DCpCZmWiVD,
+53,Studio Mirage,L-01,studiomirage@example.com,3IXiSxRi3M,
+54,Echo Charm Co.,L-02,echocharm@example.com,ElT8L6m0YV,
+55,Firefly Prints,L-03,fireflyprints@example.com,vl7f4mnU5K,
+56,Chibi Dreams Studio,L-04,chibidreams@example.com,9lJ1eu65RX,
+57,Legendary Loot,L-05,legendaryloot@example.com,Ozc88NrS7v,
+58,Pastel Potion Shop,M-01,pastelpotion@example.com,1YIVOfPWDk,
+59,Shadow Realm Crafts,M-02,shadowrealm@example.com,GhqnaWECqU,
+60,Golden Hour Goods,M-03,goldenhour@example.com,v4EViPku1T,
+61,Stellar Pins Co.,M-04,stellarpins@example.com,ffe0PqWDID,
+62,Ink & Ember Studio,M-05,inkember@example.com,47yFFVTQVs,
+63,Dragon Scale Forge,N-01,dragonscale@example.com,4Vtys3xW6o,
+64,Cloud Nine Prints,N-02,cloudnine@example.com,5c9phZEAUf,
+65,Tiny Treasure Co.,N-03,tinytreasure@example.com,XOZo5l5NC0,
+66,Urban Otaku Wear,N-04,urbanotaku@example.com,Vm2kPELEuF,
+67,Mystic Lanterns,N-05,mysticlanterns@example.com,pUId7hJqzK,
+68,Pixel Bloom Studio,O-01,pixelbloom@example.com,c74TFizGwI,
+69,Cosplay Closet,O-02,cosplaycloset@example.com,VD3ExgaYyj,
+70,Starfall Studio,O-03,starfall@example.com,zzQpzPpdja,
+71,Fairy Dust Crafts,O-04,fairydust@example.com,lBpdmAcZCp,
+72,Myth & Magic Co.,O-05,mythmagic@example.com,qkcdu3qD5r,
+73,Crescent Moon Goods,P-01,crescentmoon@example.com,pZuq0OGik0,
+74,Otaku Pantry,P-02,otakupantry@example.com,fbeoGKjfVE,Themed snacks
+75,Arcane Apparel,P-03,arcaneapparel@example.com,nuWXTW7Ht0,
+76,Kitschy Koi,P-04,kitschykoi@example.com,uYqlI5zn4K,
+77,Vivid Vortex Studio,P-05,vividvortex@example.com,a4VsATFmJJ,
+78,Paper Lantern Co.,Q-01,paperlantern@example.com,sfaOMuFlh6,
+79,Runestone Relics,Q-02,runestone@example.com,NEnZdAk9pK,
+80,Blossom & Blade,Q-03,blossomblade@example.com,VKtwXbsOZp,
+81,Pixel Petals Studio,Q-04,pixelpetals@example.com,qt0IyJjy01,
+82,Charm Haven,Q-05,charmhaven@example.com,UT5gX6o1Sv,
+83,Crystal Bloom Co.,R-01,crystalbloom@example.com,2bd9NFsi0w,
+84,Dreamforge Studio,R-02,dreamforge@example.com,tVJd26tYBD,
+85,Lunar Loom Crafts,R-03,lunarloom@example.com,PjWa1T5Sgm,
+86,Frostbyte Creations,R-04,frostbyte@example.com,0jfnxL8AIo,
+87,Kawaii Capsule,R-05,kawaiicapsule@example.com,88747DanXz,
+88,Dragonfruit Designs,S-01,dragonfruit@example.com,omybtGXix1,
+89,Celestial Trinkets,S-02,celestialtrinkets@example.com,tzGIw71Z1V,
+90,Inkspire Studio,S-03,inkspire@example.com,IkteL2t0Sj,
+91,Retro Realm Goods,S-04,retrorealm@example.com,1GnuROThM2,
+92,Foxfire Crafts,S-05,foxfire@example.com,6uU70eRFRK,
+93,Aurora Threads,T-01,aurorathreads@example.com,FTv9WPClnh,Hand-dyed fabrics
+94,Iron Oni Forge,T-02,irononi@example.com,YVIxyVfCSu,Mini metal sculptures
+95,Petal Prism Studio,T-03,petalprism@example.com,RcNMamLSes,Floral resin art
+96,ByteSize Trinkets,T-04,bytesize@example.com,FEAXL76xGg,Tech-inspired charms
+97,Lunar Latte Co.,T-05,lunarlatte@example.com,xEwNI2Obi7,Themed drink mixes
+98,Golden Kitsune Goods,U-01,goldenkitsune@example.com,C9QLhyw3Z9,
+99,Obsidian Brush Co.,U-02,obsidianbrush@example.com,DgLWeMVnLc,Calligraphy art
+100,Tiny Tavern Crafts,U-03,tinytavern@example.com,sTAWuJiX9V,Fantasy mugs
+101,Neon Neko Studio,U-04,neonneko@example.com,1ZHni5A0Sm,
+102,Maple Myth Designs,U-05,maplemyth@example.com,tBB01XBvTq,
+103,Starlume Jewelry,V-01,starlume@example.com,dsq0qMkP7a,
+104,Dungeon Delights Bakery,V-02,dungeondelights@example.com,u6apTPnihz,Fantasy cookies
+105,Pixel Parade Co.,V-03,pixelparade@example.com,9StFfBKr0W,
+106,Bloom & Rune Studio,V-04,bloomrune@example.com,OFRgO64T5n,
+107,Arcadia Diceworks,V-05,arcadiadice@example.com,mh3Qpv2829,Custom dice
+108,Foxglove Fables,W-01,foxglovefables@example.com,ZlrfV3hLBI,
+109,Cloudberry Crafts,W-02,cloudberry@example.com,UmKSp7cvq1,
+110,Mythos Market,W-03,mythosmarket@example.com,Y2R50BYMi2,
+111,Chroma Charm Studio,W-04,chromacharm@example.com,iJIWLUV7FV,
+112,Spiritbound Studio,W-05,spiritbound@example.com,AkckckwSaw,
+113,Vellichor Prints,X-01,vellichor@example.com,P5ygxbWg9e,Bookish art prints
+114,Frost Petal Co.,X-02,frostpetal@example.com,qVr8nPINZA,
+115,Echo Rune Creations,X-03,echorune@example.com,q4nW2iMrBg,
+116,Nova Nest Crafts,X-04,novanest@example.com,7J58FeS18s,
+117,Twilight Trinket Co.,X-05,twilighttrinket@example.com,7q2WebxsKV,

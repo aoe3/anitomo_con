@@ -18,7 +18,6 @@ const collectedCountEl = document.getElementById("collected-count");
 const remainingToggle = document.getElementById("remaining-toggle");
 const collectedToggle = document.getElementById("collected-toggle");
 
-
 remainingToggle.addEventListener("click", () => {
   const isExpanded = remainingToggle.getAttribute("aria-expanded") === "true";
   remainingToggle.setAttribute("aria-expanded", String(!isExpanded));
@@ -32,19 +31,19 @@ collectedToggle.addEventListener("click", () => {
 });
 
 fetch("vendors.public.json")
-  .then(res => res.json())
-  .then(data => {
+  .then((res) => res.json())
+  .then((data) => {
     vendors = data.vendors;
     STORAGE_KEY = `conhunt:${data.eventId}`;
 
-    vendors.forEach(v => {
+    vendors.forEach((v) => {
       tokenToVendorId[v.token] = v.id;
     });
 
     handleScanFromURL();
     render();
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Failed to load vendors.public.json", err);
   });
 
@@ -60,22 +59,97 @@ function showMessage(text, isError = false) {
 }
 
 function isValidVendor(id) {
-  return vendors.some(v => v.id === id);
+  return vendors.some((v) => v.id === id);
+}
+
+function normalizeState(rawState) {
+  const state = rawState && typeof rawState === "object" ? rawState : {};
+  return {
+    scanned: Array.isArray(state.scanned) ? state.scanned : [],
+    collectedAt:
+      state.collectedAt && typeof state.collectedAt === "object"
+        ? state.collectedAt
+        : {},
+  };
 }
 
 function loadState() {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { scanned: [] };
+    const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    return normalizeState(parsed);
   } catch {
-    return { scanned: [] };
+    return normalizeState();
   }
 }
 
 function saveState(state) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizeState(state)));
 }
 
-function createVendorCard(vendor, isCollected) {
+function getTruncatedTimestampISO() {
+  const now = new Date();
+  now.setSeconds(0, 0);
+  return now.toISOString();
+}
+
+function formatCollectedTime(isoString) {
+  if (!isoString) return "";
+
+  const date = new Date(isoString);
+
+  return new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  }).format(date);
+}
+
+function formatDuration(startISO, endISO) {
+  if (!startISO || !endISO) return "";
+
+  const start = new Date(startISO);
+  const end = new Date(endISO);
+
+  const diffMs = end - start;
+  if (Number.isNaN(diffMs) || diffMs < 0) return "";
+
+  const totalMinutes = Math.round(diffMs / 60000);
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+
+  if (hours <= 0) {
+    return `${minutes} minute${minutes === 1 ? "" : "s"}`;
+  }
+
+  if (minutes === 0) {
+    return `${hours} hour${hours === 1 ? "" : "s"}`;
+  }
+
+  return `${hours} hour${hours === 1 ? "" : "s"} and ${minutes} minute${
+    minutes === 1 ? "" : "s"
+  }`;
+}
+
+function getCompletionDurationText(state) {
+  const timestamps = Object.values(state.collectedAt)
+    .filter(Boolean)
+    .map((iso) => new Date(iso))
+    .filter((d) => !Number.isNaN(d.getTime()))
+    .sort((a, b) => a - b);
+
+  if (timestamps.length === 0) return "";
+
+  const startISO = timestamps[0].toISOString();
+  const endISO = timestamps[timestamps.length - 1].toISOString();
+  const duration = formatDuration(startISO, endISO);
+
+  return duration
+    ? `You completed the hunt in ${duration}! Congrats!`
+    : "";
+}
+
+function createVendorCard(vendor, isCollected, collectedTime = "") {
   const div = document.createElement("div");
   div.className = "vendor";
 
@@ -90,6 +164,13 @@ function createVendorCard(vendor, isCollected) {
   div.appendChild(name);
   div.appendChild(booth);
 
+  if (isCollected && collectedTime) {
+    const time = document.createElement("div");
+    time.className = "vendor-time";
+    time.textContent = collectedTime;
+    div.appendChild(time);
+  }
+
   if (isCollected) {
     if (lastScannedVendorId && vendor.id === lastScannedVendorId) {
       requestAnimationFrame(() => {
@@ -103,6 +184,11 @@ function createVendorCard(vendor, isCollected) {
   return div;
 }
 
+function renderCompletionBanner(state) {
+  const durationText = getCompletionDurationText(state);
+  bannerEl.textContent = durationText || "🎉 Collection complete!";
+}
+
 function render() {
   const state = loadState();
   const scannedSet = new Set(state.scanned);
@@ -113,12 +199,23 @@ function render() {
   const remaining = [];
   const collected = [];
 
-  vendors.forEach(vendor => {
+  vendors.forEach((vendor) => {
     if (scannedSet.has(vendor.id)) {
       collected.push(vendor);
     } else {
       remaining.push(vendor);
     }
+  });
+
+  collected.sort((a, b) => {
+    const aISO = state.collectedAt[String(a.id)] || "";
+    const bISO = state.collectedAt[String(b.id)] || "";
+
+    if (!aISO && !bISO) return 0;
+    if (!aISO) return 1;
+    if (!bISO) return -1;
+
+    return new Date(aISO) - new Date(bISO);
   });
 
   const total = vendors.length;
@@ -128,12 +225,16 @@ function render() {
   remainingCountEl.textContent = `(${remaining.length})`;
   collectedCountEl.textContent = `(${collectedCount})`;
 
-  remaining.forEach(vendor => {
+  remaining.forEach((vendor) => {
     remainingContainer.appendChild(createVendorCard(vendor, false));
   });
 
-  collected.forEach(vendor => {
-    collectedContainer.appendChild(createVendorCard(vendor, true));
+  collected.forEach((vendor) => {
+    const collectedISO = state.collectedAt[String(vendor.id)];
+    const collectedTime = formatCollectedTime(collectedISO);
+    collectedContainer.appendChild(
+      createVendorCard(vendor, true, collectedTime)
+    );
   });
 
   lastScannedVendorId = null;
@@ -145,17 +246,21 @@ function render() {
     subtitleEl.hidden = true;
     countEl.hidden = true;
     progressLabelEl.hidden = true;
+
+    renderCompletionBanner(state);
     bannerEl.hidden = false;
+
     remainingToggle.setAttribute("aria-expanded", "false");
     remainingContainer.hidden = true;
-    collectedToggle.setAttribute("aria-expanded", "false");
-    collectedContainer.hidden = true;
+
+    collectedToggle.setAttribute("aria-expanded", "true");
+    collectedContainer.hidden = false;
   } else {
     subtitleEl.hidden = false;
     countEl.hidden = false;
     progressLabelEl.hidden = false;
     bannerEl.hidden = true;
-    countEl.textContent = `${collectedCount} / ${total}`;
+
     progressLabelEl.textContent = "Stickers collected:";
     countEl.textContent = `${collectedCount} / ${total}`;
   }
@@ -187,13 +292,18 @@ function handleScanFromURL() {
   }
 
   const state = loadState();
-
-  const vendor = vendors.find(v => v.id === vendorId);
+  const vendor = vendors.find((v) => v.id === vendorId);
 
   if (state.scanned.includes(vendorId)) {
     showMessage(`${vendor.name} already collected ✔️`);
   } else {
     state.scanned.push(vendorId);
+
+    const vendorKey = String(vendorId);
+    if (!state.collectedAt[vendorKey]) {
+      state.collectedAt[vendorKey] = getTruncatedTimestampISO();
+    }
+
     saveState(state);
     lastScannedVendorId = vendorId;
 

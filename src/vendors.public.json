@@ -1,77 +1,77 @@
 {
-  "eventId": "anitomo-con-20260327-144115",
+  "eventId": "anitomo-con-20260329-084515",
   "vendors": [
     {
       "id": 1,
       "name": "Florals",
       "booth": "A-01",
-      "token": "Qye6MROsG2"
+      "token": "5GNSiJf0hc"
     },
     {
       "id": 2,
       "name": "Florals",
       "booth": "A-02",
-      "token": "2K5aobBSEX"
+      "token": "iZw1DYQ4z1"
     },
     {
       "id": 3,
-      "name": "MechaForge",
-      "booth": "B-04",
-      "token": "unAIEZvK4b"
+      "name": "Inkbound Studio",
+      "booth": "C-02",
+      "token": "FVHRGgsQp0"
     },
     {
       "id": 4,
-      "name": "Starlight Pins",
-      "booth": "B-05",
-      "token": "GrWbV8pZNN"
+      "name": "Otaku Outfitters",
+      "booth": "D-02",
+      "token": "XMONXjUKwd"
     },
     {
       "id": 5,
-      "name": "Inkbound Studio",
-      "booth": "C-02",
-      "token": "VTzlYFaAMK"
+      "name": "Sakura Stationery",
+      "booth": "E-03",
+      "token": "uBf99Dzz4O"
     },
     {
       "id": 6,
-      "name": "Lucky Cat Charms",
-      "booth": "D-03",
-      "token": "KRAibuId2P"
+      "name": "Retro Relics",
+      "booth": "E-04",
+      "token": "ydsqy5BgSN"
     },
     {
       "id": 7,
-      "name": "Arcane Dice",
-      "booth": "D-04",
-      "token": "js4523Owff"
+      "name": "Mythic Minis",
+      "booth": "E-05",
+      "token": "9dwTecDIY9"
     },
     {
       "id": 8,
-      "name": "Neon Lotus",
-      "booth": "E-01",
-      "token": "shJMkWXmH7"
+      "name": "Steel Sakura",
+      "booth": "F-03",
+      "token": "XllOGPrBY5"
     },
     {
       "id": 9,
-      "name": "Otaku Outfitters",
-      "booth": "D-02",
-      "token": "l3nQaOn0kE"
+      "name": "Mythos Market",
+      "booth": "W-03",
+      "token": "bOHBR1c45x"
     },
     {
       "id": 10,
-      "name": "Sakura Stationery",
-      "booth": "E-03",
-      "token": "X2uiHRuoNY"
+      "name": "Chroma Charm Studio",
+      "booth": "W-04",
+      "token": "pFlT1gs9M8"
     },
     {
       "id": 11,
-      "name": "Retro Relics",
-      "booth": "E-04",
-      "token": "k3cz9kKGVy"
+      "name": "Spiritbound Studio",
+      "booth": "W-05",
+      "token": "wbvWJ2jd3e"
     },
     {
       "id": 12,
-      "name": "Mythic Minis",
-      "booth": "E-05",
-      "token": "NJ6hcHY306"
+      "name": "Vellichor Prints",
+      "booth": "X-01",
+      "token": "O2kZBsNx3R"
     }
   ]
 }
