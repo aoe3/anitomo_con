@@ -42,5 +42,19 @@
       </p>
     </main>
     <script src="../js/map.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+            navigator.serviceWorker
+                .register('/serviceworker.js')
+                .then((registration) => {
+                console.log('Service worker registered from map page:', registration.scope);
+                })
+                .catch((error) => {
+                console.error('Service worker registration failed from map page:', error);
+                });
+            });
+        }
+    </script>
   </body>
 </html>
