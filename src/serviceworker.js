@@ -1,7 +1,6 @@
-const CACHE_NAME = 'anitomo-map-cache-v4'; // If map changes, need to bump this number
+const CACHE_NAME = 'anitomo-map-cache-v5'; // If map changes, need to bump this number
 
 const ASSETS_TO_PRECACHE = [
-  '/files/map.html',
   '/assets/floor_map_1MB.png',
   '/assets/floor_map.png',
 ];
