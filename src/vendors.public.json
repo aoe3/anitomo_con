@@ -1,77 +1,89 @@
 {
-  "eventId": "anitomo-con-20260330-082819",
+  "eventId": "anitomo-con-20260330-174848",
   "vendors": [
     {
       "id": 1,
       "name": "Florals",
       "booth": "A-01",
-      "token": "4AcseAXEA9"
+      "token": "8ylOJdAIyi",
+      "logo": "assets/logos_formatted/vendor_logo_001.webp"
     },
     {
       "id": 2,
       "name": "Florals",
       "booth": "A-02",
-      "token": "ZkJJRQ254p"
+      "token": "C6MVTK217H",
+      "logo": "assets/logos_formatted/vendor_logo_002.webp"
     },
     {
       "id": 3,
       "name": "Inkbound Studio",
       "booth": "C-02",
-      "token": "sEe9uK5vxN"
+      "token": "PbxJHk7l4T",
+      "logo": "assets/logos_formatted/vendor_logo_003.webp"
     },
     {
       "id": 4,
       "name": "Otaku Outfitters",
       "booth": "D-02",
-      "token": "n3UjRmJktn"
+      "token": "YZisRtCjKl",
+      "logo": "assets/logos_formatted/vendor_logo_004.webp"
     },
     {
       "id": 5,
       "name": "Sakura Stationery",
       "booth": "E-03",
-      "token": "6ZYT7SoqyV"
+      "token": "RfPEnTty1E",
+      "logo": "assets/logos_formatted/vendor_logo_005.webp"
     },
     {
       "id": 6,
       "name": "Retro Relics",
       "booth": "E-04",
-      "token": "WszBBPisET"
+      "token": "i6BnEadjN3",
+      "logo": "assets/logos_formatted/vendor_logo_006.webp"
     },
     {
       "id": 7,
       "name": "Mythic Minis",
       "booth": "E-05",
-      "token": "fgMN6ITeES"
+      "token": "12Z8CJvFwF",
+      "logo": "assets/logos_formatted/vendor_logo_007.webp"
     },
     {
       "id": 8,
       "name": "Steel Sakura",
       "booth": "F-03",
-      "token": "cVlStYwVUe"
+      "token": "3oM8nGhTHP",
+      "logo": "assets/logos_formatted/vendor_logo_008.webp"
     },
     {
       "id": 9,
       "name": "Mythos Market",
       "booth": "W-03",
-      "token": "PDluCdp8Vl"
+      "token": "HXDvgqAyuI",
+      "logo": "assets/logos_formatted/vendor_logo_009.webp"
     },
     {
       "id": 10,
       "name": "Chroma Charm Studio",
       "booth": "W-04",
-      "token": "3uk5W0Dm2w"
+      "token": "WXwJ6BrC5n",
+      "logo": "assets/logos_formatted/vendor_logo_010.webp"
     },
     {
       "id": 11,
       "name": "Spiritbound Studio",
       "booth": "W-05",
-      "token": "3drjcH8Y0I"
+      "token": "pPOLco6nb8",
+      "logo": "assets/logos_formatted/vendor_logo_011.webp"
     },
     {
       "id": 12,
       "name": "Vellichor Prints",
       "booth": "X-01",
-      "token": "OryY0SxasY"
+      "token": "ZoeTIVRvnQ",
+      "logo": "assets/logos_formatted/vendor_logo_012.webp"
     }
   ]
 }

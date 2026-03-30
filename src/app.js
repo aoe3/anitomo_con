@@ -51,6 +51,24 @@ collectedToggle.addEventListener("click", () => {
   collectedContainer.hidden = isExpanded;
 });
 
+function warmLogoCache(logoPaths) {
+  if (!('serviceWorker' in navigator)) return;
+  if (!Array.isArray(logoPaths) || logoPaths.length === 0) return;
+
+  navigator.serviceWorker.ready
+    .then((registration) => {
+      if (registration.active) {
+        registration.active.postMessage({
+          type: "CACHE_LOGO_ASSETS",
+          paths: logoPaths,
+        });
+      }
+    })
+    .catch((error) => {
+      console.warn("Could not warm logo cache:", error);
+    });
+}
+
 fetch("vendors.public.json")
   .then((res) => res.json())
   .then(async (data) => {
@@ -60,6 +78,13 @@ fetch("vendors.public.json")
     vendors.forEach((v) => {
       tokenToVendorId[v.token] = v.id;
     });
+
+    const logoPaths = vendors
+      .map((v) => v.logo)
+      .filter((logo) => typeof logo === "string" && logo.length > 0)
+      .map((logo) => (logo.startsWith("/") ? logo : `/${logo}`));
+
+    warmLogoCache(logoPaths);
 
     await handleScanFromURL();
     render();
@@ -191,6 +216,25 @@ function getCompletionDurationText(state) {
 function createVendorCard(vendor, isCollected, collectedTime = "") {
   const div = document.createElement("div");
   div.className = "vendor";
+
+  if (vendor.logo) {
+    const logoWrap = document.createElement("div");
+    logoWrap.className = "vendor-logo-wrap";
+
+    const logo = document.createElement("img");
+    logo.className = "vendor-logo";
+    logo.src = vendor.logo.startsWith("/") ? vendor.logo : `/${vendor.logo}`;
+    logo.alt = `${vendor.name} logo`;
+    logo.loading = "lazy";
+    logo.decoding = "async";
+
+    logo.addEventListener("error", () => {
+      logoWrap.remove();
+    });
+
+    logoWrap.appendChild(logo);
+    div.appendChild(logoWrap);
+  }
 
   const name = document.createElement("div");
   name.className = "vendor-name";

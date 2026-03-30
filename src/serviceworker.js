@@ -1,14 +1,39 @@
-const CACHE_NAME = 'anitomo-map-cache-v5'; // If map changes, need to bump this number
+const CACHE_NAME = 'anitomo-assets-cache-v8';
 
-const ASSETS_TO_PRECACHE = [
+const MAP_ASSETS = [
   '/assets/floor_map_1MB.png',
   '/assets/floor_map.png',
 ];
 
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS_TO_PRECACHE))
+function isMapAsset(pathname) {
+  return MAP_ASSETS.includes(pathname);
+}
+
+function isLogoAsset(pathname) {
+  return pathname.startsWith('/assets/logos_formatted/') && pathname.endsWith('.webp');
+}
+
+async function cacheAssetList(assetPaths) {
+  const cache = await caches.open(CACHE_NAME);
+
+  await Promise.all(
+    assetPaths.map(async (assetPath) => {
+      try {
+        const existing = await cache.match(assetPath);
+        if (existing) return;
+
+        const response = await fetch(assetPath, { cache: 'no-cache' });
+        if (response && response.ok) {
+          await cache.put(assetPath, response.clone());
+        }
+      } catch (error) {
+        console.warn('Failed to cache asset:', assetPath, error);
+      }
+    })
   );
+}
+
+self.addEventListener('install', () => {
   self.skipWaiting();
 });
 
@@ -27,14 +52,35 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
+self.addEventListener('message', (event) => {
+  const data = event.data;
+
+  if (!data || typeof data !== 'object') return;
+
+  if (data.type === 'CACHE_MAP_ASSETS') {
+    event.waitUntil(cacheAssetList(MAP_ASSETS));
+    return;
+  }
+
+  if (data.type === 'CACHE_LOGO_ASSETS' && Array.isArray(data.paths)) {
+    const validPaths = data.paths.filter(
+      (p) => typeof p === 'string' && isLogoAsset(p)
+    );
+
+    if (validPaths.length > 0) {
+      event.waitUntil(cacheAssetList(validPaths));
+    }
+  }
+});
+
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  const isMapImage =
-    url.pathname === '/assets/floor_map_1MB.png' ||
-    url.pathname === '/assets/floor_map.png';
+  const shouldHandle =
+    event.request.method === 'GET' &&
+    (isMapAsset(url.pathname) || isLogoAsset(url.pathname));
 
-  if (!isMapImage) {
+  if (!shouldHandle) {
     return;
   }
 
@@ -44,16 +90,10 @@ self.addEventListener('fetch', (event) => {
         return cachedResponse;
       }
 
-      return fetch(event.request).then((networkResponse) => {
-        if (
-          networkResponse &&
-          networkResponse.status === 200 &&
-          event.request.method === 'GET'
-        ) {
-          const responseClone = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseClone);
-          });
+      return fetch(event.request).then(async (networkResponse) => {
+        if (networkResponse && networkResponse.ok) {
+          const cache = await caches.open(CACHE_NAME);
+          cache.put(event.request, networkResponse.clone());
         }
 
         return networkResponse;
